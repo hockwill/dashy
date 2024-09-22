@@ -120,7 +120,7 @@ export default {
     configPath() {
       return this.$store.state.currentConfigInfo?.confPath
       || process.env.VUE_APP_CONFIG_PATH
-      || '/conf.yml';
+      || `${process.env.BASE_URL || '/'}conf.yml`;
     },
   },
   components: {

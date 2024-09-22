@@ -353,7 +353,7 @@ const store = new Vuex.Store({
   actions: {
     /* Fetches the root config file, only ever called by INITIALIZE_CONFIG */
     async [INITIALIZE_ROOT_CONFIG]({ commit }) {
-      const configFilePath = process.env.VUE_APP_CONFIG_PATH || '/conf.yml';
+      const configFilePath = process.env.VUE_APP_CONFIG_PATH || `${process.env.BASE_URL || '/'}conf.yml`;
       try {
         // Attempt to fetch the YAML file
         const response = await axios.get(configFilePath, makeBasicAuthHeaders());

@@ -1,7 +1,7 @@
 <template>
 <div class="glances-disk-space-wrapper" v-if="disks">
   <div v-for="(disk, key) in disks" :key="key" class="disk-row">
-    <PercentageChart :title="{ disk.alias || disk.device_name }"
+    <PercentageChart :title=" disk.alias || disk.device_name "
       :values="[
       { label: $t('widgets.glances.disk-space-used'), size: disk.percent, color: '#f80363' },
       { label: $t('widgets.glances.disk-space-free'), size: 100 - disk.percent, color: '#20e253' },

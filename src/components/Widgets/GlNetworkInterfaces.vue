@@ -2,7 +2,7 @@
 <div class="glances-network-interfaces-wrapper" v-if="networks">
   <div class="interface-row" v-for="network in networks" :key="network.name">
     <div class="network-info">
-      <p class="network-name">{{ network.name }}</p>
+      <p class="network-name">{{ network.alias || network.name }}</p>
       <p class="network-speed">{{ network.speed | formatSpeed }}</p>
       <p :class="`network-online ${network.online}`">
       {{ network.online }}
@@ -66,9 +66,10 @@ export default {
       const networks = [];
       networkData.forEach((network, index) => {
         networks.push({
+          alias: network.alias
           name: network.interface_name,
           speed: network.speed,
-          online: network.speed ? 'up' : 'down', //v3 to v4 is_up no longer seems to be a default response field
+          online: network.speed ? 'up' : 'down', // v3 to v4 is_up no longer seems to be a default response field
           currentDownload: network.bytes_recv,
           currentUpload: network.bytes_sent,
           totalDownload: network.bytes_recv_gauge,

@@ -66,7 +66,7 @@ export default {
       const networks = [];
       networkData.forEach((network, index) => {
         networks.push({
-          alias: network.alias
+          alias: network.alias,
           name: network.interface_name,
           speed: network.speed,
           online: network.speed ? 'up' : 'down', // v3 to v4 is_up no longer seems to be a default response field

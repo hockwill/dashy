@@ -1,7 +1,7 @@
 <template>
 <div class="glances-disk-io-wrapper" v-if="disks">
   <div class="disk-row" v-for="disk in disks" :key="disk.name">
-    <p class="disk-name">{{ disk.name }}</p>
+    <p class="disk-name">{{ disk.alias || disk.name }}</p>
     <!-- Read Data -->
     <div class="io-data read" v-tooltip="disk.readC ? `Count: ${disk.readC}` : ''">
       <span class="lbl">{{ $t('widgets.glances.disk-io-read') }}:</span>
@@ -53,6 +53,7 @@ export default {
       const disks = [];
       diskData.forEach((disk, index) => {
         disks.push({
+          alias: disk.alias,
           name: disk.disk_name,
           readB: disk.read_bytes,
           readC: disk.read_count,
